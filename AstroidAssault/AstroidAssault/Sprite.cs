@@ -101,8 +101,60 @@ namespace AstroidAssault
                     new Vector2(frameWidth / 2, frameHeight / 2);
             }
         }
-        // Stopped at page 95 in book.
+        public Rectangle BoundingBoxRect
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)location.X + BoundingXPadding,
+                    (int)location.Y + BoundingYPadding,
+                    frameWidth - (BoundingXPadding * 2),
+                    frameHeight - (BoundingYPadding * 2));
+            }
+        }
+        public bool IsBoxColliding(Rectangle OtherBox)
+        {
+            return BoundingBoxRect.Intersects(OtherBox);
+        }
+        public bool IsCircleColliding(Vector2 otherCenter, float
+            otherRadius)
+        {
+            if (Vector2.Distance(Center, otherCenter) <
+                (CollisionRadius + otherRadius))
+                return true;
+            else return false;
+        }
+        public void AddFrame(Rectangle frameRectangle)
+        {
+            frames.Add(frameRectangle);
+        }
+        public virtual void Update(GameTime gameTime)
+        {
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            timeForCurrentFrame += elapsed;
+
+            if (timeForCurrentFrame >= FrameTime)
+            {
+                currentFrame = (currentFrame + 1) % (frames.Count);
+                timeForCurrentFrame = 0.0f;
+            }
+
+            location += (velocity * elapsed);
+        }
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(
+                Texture,
+                Center,
+                Source,
+                tintColor,
+                rotation,
+                new Vector2(frameWidth / 2, frameHeight / 2),
+                1.0f,
+                SpriteEffects.None,
+                0.0f);
+        }
     }
 
 }
