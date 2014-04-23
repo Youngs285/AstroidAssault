@@ -59,7 +59,7 @@ namespace AstroidAssault
                 star.Draw(spriteBatch);
             }
         }
-        //Page 102 " Add the following declaration to the Game1 class:" 
+        
 
 
 

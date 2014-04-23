@@ -19,9 +19,10 @@ namespace AstroidAssault
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
-        GameStates gameState = GameStates.TitleScreen;
+        GameStates gameState = GameStates.Playing;
         Texture2D titleScreen;
         Texture2D spriteSheet;
+        StarField starField;
 
         public Game1()
         {
@@ -53,6 +54,14 @@ namespace AstroidAssault
 
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
+
+            starField = new StarField(
+                this.Window.ClientBounds.Width,
+                this.Window.ClientBounds.Height,
+                200,
+                new Vector2(0, 30f),
+                spriteSheet,
+                new Rectangle(0, 450, 2, 2));
 
 
             // TODO: use this.Content to load your game content here
@@ -86,6 +95,7 @@ namespace AstroidAssault
                     break;
 
                 case GameStates.Playing:
+                    starField.Update(gameTime);
                     break;
 
                 case GameStates.PlayerDead:
@@ -104,7 +114,7 @@ namespace AstroidAssault
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
@@ -122,6 +132,7 @@ namespace AstroidAssault
                 (gameState == GameStates.PlayerDead) ||
                 (gameState == GameStates.GameOver))
             {
+                starField.Draw(spriteBatch);
             }
 
             if ((gameState == GameStates.GameOver))
