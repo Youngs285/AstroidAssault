@@ -23,6 +23,7 @@ namespace AstroidAssault
         Texture2D titleScreen;
         Texture2D spriteSheet;
         StarField starField;
+        AsteroidManager asteroidManager;
 
         public Game1()
         {
@@ -63,6 +64,14 @@ namespace AstroidAssault
                 spriteSheet,
                 new Rectangle(0, 450, 2, 2));
 
+            asteroidManager = new AsteroidManager(
+                10,
+                spriteSheet,
+                new Rectangle(0, 0, 50, 50),
+                20,
+                this.Window.ClientBounds.Width,
+                this.Window.ClientBounds.Height);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -96,6 +105,7 @@ namespace AstroidAssault
 
                 case GameStates.Playing:
                     starField.Update(gameTime);
+                    asteroidManager.Update(gameTime);
                     break;
 
                 case GameStates.PlayerDead:
@@ -133,6 +143,7 @@ namespace AstroidAssault
                 (gameState == GameStates.GameOver))
             {
                 starField.Draw(spriteBatch);
+                asteroidManager.Draw(spriteBatch);
             }
 
             if ((gameState == GameStates.GameOver))
