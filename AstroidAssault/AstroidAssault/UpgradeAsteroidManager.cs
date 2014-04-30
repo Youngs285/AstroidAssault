@@ -14,7 +14,7 @@ namespace Asteroid_Belt_Assault
         private int screenPadding = 10;
 
         private Rectangle initialFrame;
-        private int asteroidFrames;
+        private int UpgradeAsteroidFrames;
         private Texture2D texture;
 
         public List<Sprite> Asteroids = new List<Sprite>();
@@ -30,7 +30,7 @@ namespace Asteroid_Belt_Assault
                 texture,
                 initialFrame,
                 Vector2.Zero);
-            for (int x = 1; x < asteroidFrames; x++)
+            for (int x = 1; x < UpgradeAsteroidFrames; x++)
             {
                 newUpgradeAsteroid.AddFrame(new Rectangle(
                     initialFrame.X + (initialFrame.Width * x),
@@ -59,7 +59,7 @@ namespace Asteroid_Belt_Assault
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
-            this.asteroidFrames = asteroidFrames;
+            this.UpgradeAsteroidFrames = asteroidFrames;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             for (int x = 0; x < asteroidCount; x++)

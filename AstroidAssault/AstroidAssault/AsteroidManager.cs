@@ -30,7 +30,7 @@ namespace Asteroid_Belt_Assault
                 texture,
                 initialFrame,
                 Vector2.Zero);
-            for (int x = 1; x < asteroidFrames; x++)
+            for (int x = 1; x < UpgradeAsteroidFrames; x++)
             {
                 newAsteroid.AddFrame(new Rectangle(
                     initialFrame.X + (initialFrame.Width * x),
@@ -59,7 +59,7 @@ namespace Asteroid_Belt_Assault
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
-            this.asteroidFrames = asteroidFrames;
+            this.UpgradeAsteroidFrames = asteroidFrames;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             for (int x = 0; x < asteroidCount; x++)
