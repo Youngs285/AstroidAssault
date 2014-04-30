@@ -25,23 +25,23 @@ namespace Asteroid_Belt_Assault
 
         public void AddAsteroid()
         {
-            Sprite newAsteroid = new Sprite(
+            Sprite newUpgradeAsteroid = new Sprite(
                 new Vector2(-500, -500),
                 texture,
                 initialFrame,
                 Vector2.Zero);
             for (int x = 1; x < asteroidFrames; x++)
             {
-                newAsteroid.AddFrame(new Rectangle(
+                newUpgradeAsteroid.AddFrame(new Rectangle(
                     initialFrame.X + (initialFrame.Width * x),
                     initialFrame.Y,
                     initialFrame.Width,
                     initialFrame.Height));
             }
-            newAsteroid.Rotation =
+            newUpgradeAsteroid.Rotation =
                 MathHelper.ToRadians((float)rand.Next(0, 360));
-            newAsteroid.CollisionRadius = 15;
-            Asteroids.Add(newAsteroid);
+            newUpgradeAsteroid.CollisionRadius = 15;
+            Asteroids.Add(newUpgradeAsteroid);
         }
 
         public void Clear()
@@ -53,7 +53,7 @@ namespace Asteroid_Belt_Assault
             int asteroidCount,
             Texture2D texture,
             Rectangle initialFrame,
-            int asteroidFrames,    
+            int asteroidFrames,
             int screenWidth,
             int screenHeight)
         {
