@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroid_Belt_Assault
+namespace AstroidAssault
 {
     class PlayerManager
     {
@@ -25,7 +25,7 @@ namespace Asteroid_Belt_Assault
         public ShotManager PlayerShotManager;
 
         public PlayerManager(
-            Texture2D texture,  
+            Texture2D texture,
             Rectangle initialFrame,
             int frameCount,
             Rectangle screenBounds)
@@ -46,10 +46,10 @@ namespace Asteroid_Belt_Assault
 
             playerAreaLimit =
                 new Rectangle(
-                    0,
-                    screenBounds.Height / 2,
-                    screenBounds.Width,
-                    screenBounds.Height / 2);
+                0,
+                screenBounds.Height / 2,
+                screenBounds.Width,
+                screenBounds.Height / 2);
 
             for (int x = 1; x < frameCount; x++)
             {
@@ -75,100 +75,7 @@ namespace Asteroid_Belt_Assault
             }
         }
 
-        private void HandleKeyboardInput(KeyboardState keyState)
-        {
-            if (keyState.IsKeyDown(Keys.Up))
-            {
-                playerSprite.Velocity += new Vector2(0, -1);
-            }
-
-            if (keyState.IsKeyDown(Keys.Down))
-            {
-                playerSprite.Velocity += new Vector2(0, 1);
-            }
-
-            if (keyState.IsKeyDown(Keys.Left))
-            {
-                playerSprite.Velocity += new Vector2(-1, 0);
-            }
-
-            if (keyState.IsKeyDown(Keys.Right))
-            {
-                playerSprite.Velocity += new Vector2(1, 0);
-            }
-
-            if (keyState.IsKeyDown(Keys.Space))
-            {
-                FireShot();
-            }
-        }
-
-        private void HandleGamepadInput(GamePadState gamePadState)
-        {
-            playerSprite.Velocity +=
-                new Vector2(
-                    gamePadState.ThumbSticks.Left.X,
-                    -gamePadState.ThumbSticks.Left.Y);
-
-            if (gamePadState.Buttons.A == ButtonState.Pressed)
-            {
-                FireShot();
-            }
-        }
-
-        private void imposeMovementLimits()
-        {
-            Vector2 location = playerSprite.Location;
-
-            if (location.X < playerAreaLimit.X)
-                location.X = playerAreaLimit.X;
-
-            if (location.X >
-                (playerAreaLimit.Right - playerSprite.Source.Width))
-                location.X =
-                    (playerAreaLimit.Right - playerSprite.Source.Width);
-
-            if (location.Y < playerAreaLimit.Y)
-                location.Y = playerAreaLimit.Y;
-
-            if (location.Y >
-                (playerAreaLimit.Bottom - playerSprite.Source.Height))
-                location.Y =
-                    (playerAreaLimit.Bottom - playerSprite.Source.Height);
-
-            playerSprite.Location = location;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            PlayerShotManager.Update(gameTime);
-
-            if (!Destroyed)
-            {
-                playerSprite.Velocity = Vector2.Zero;
-
-                shotTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-                HandleKeyboardInput(Keyboard.GetState());
-                HandleGamepadInput(GamePad.GetState(PlayerIndex.One));
-
-                playerSprite.Velocity.Normalize();
-                playerSprite.Velocity *= playerSpeed;
-
-                playerSprite.Update(gameTime);
-                imposeMovementLimits();
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            PlayerShotManager.Draw(spriteBatch);
-
-            if (!Destroyed)
-            {
-                playerSprite.Draw(spriteBatch);
-            }
-        }
-
+        private void HandleKeyboardInput (KeyboardState keyState)
+        { //page 122
     }
 }

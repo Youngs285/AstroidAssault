@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroid_Belt_Assault
+namespace AstroidAssault
 {
     class Sprite
     {
@@ -48,19 +48,16 @@ namespace Asteroid_Belt_Assault
             get { return location; }
             set { location = value; }
         }
-
         public Vector2 Velocity
         {
             get { return velocity; }
             set { velocity = value; }
         }
-
         public Color TintColor
         {
             get { return tintColor; }
             set { tintColor = value; }
         }
-
         public float Rotation
         {
             get { return rotation; }
@@ -73,33 +70,29 @@ namespace Asteroid_Belt_Assault
             set
             {
                 currentFrame = (int)MathHelper.Clamp(value, 0,
-                frames.Count - 1);
+                    frames.Count - 1);
             }
         }
-
         public float FrameTime
         {
             get { return frameTime; }
             set { frameTime = MathHelper.Max(0, value); }
         }
-
         public Rectangle Source
         {
             get { return frames[currentFrame]; }
         }
-
         public Rectangle Destination
         {
             get
             {
                 return new Rectangle(
-                    (int)location.X,
-                    (int)location.Y,
-                    frameWidth,
-                    frameHeight);
+                         (int)location.X,
+                         (int)location.Y,
+                         frameWidth,
+                         frameHeight);
             }
         }
-
         public Vector2 Center
         {
             get
@@ -108,7 +101,6 @@ namespace Asteroid_Belt_Assault
                     new Vector2(frameWidth / 2, frameHeight / 2);
             }
         }
-
         public Rectangle BoundingBoxRect
         {
             get
@@ -120,26 +112,22 @@ namespace Asteroid_Belt_Assault
                     frameHeight - (BoundingYPadding * 2));
             }
         }
-
         public bool IsBoxColliding(Rectangle OtherBox)
         {
             return BoundingBoxRect.Intersects(OtherBox);
         }
-
-        public bool IsCircleColliding(Vector2 otherCenter, float otherRadius)
+        public bool IsCircleColliding(Vector2 otherCenter, float
+            otherRadius)
         {
             if (Vector2.Distance(Center, otherCenter) <
                 (CollisionRadius + otherRadius))
                 return true;
-            else
-                return false;
+            else return false;
         }
-
         public void AddFrame(Rectangle frameRectangle)
         {
             frames.Add(frameRectangle);
         }
-
         public virtual void Update(GameTime gameTime)
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -154,7 +142,6 @@ namespace Asteroid_Belt_Assault
 
             location += (velocity * elapsed);
         }
-
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(
@@ -168,6 +155,6 @@ namespace Asteroid_Belt_Assault
                 SpriteEffects.None,
                 0.0f);
         }
-
     }
+
 }

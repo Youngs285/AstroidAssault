@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroid_Belt_Assault
+namespace AstroidAssault
 {
     class ShotManager
     {
@@ -57,17 +57,6 @@ namespace Asteroid_Belt_Assault
             }
             thisShot.CollisionRadius = CollisionRadius;
             Shots.Add(thisShot);
-
-            if (playerFired)
-            {
-
-                SoundManager.PlayPlayerShot();
-            }
-            else
-            {
-
-                SoundManager.PlayEnemyShot();
-            }
         }
 
         public void Update(GameTime gameTime)
@@ -89,7 +78,5 @@ namespace Asteroid_Belt_Assault
                 shot.Draw(spriteBatch);
             }
         }
-
-    
     }
 }

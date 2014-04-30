@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroid_Belt_Assault
+namespace AstroidAssault
 {
     class StarField
     {
@@ -13,9 +13,9 @@ namespace Asteroid_Belt_Assault
         private int screenWidth = 800;
         private int screenHeight = 600;
         private Random rand = new Random();
-        private Color[] colors = { Color.White, Color.Yellow, 
-                           Color.Wheat, Color.WhiteSmoke, 
-                           Color.SlateGray };
+        private Color[] colors = { Color.White, Color.Yellow,
+                                     Color.Wheat, Color.WhiteSmoke,
+                                     Color.SlateGray };
 
         public StarField(
             int screenWidth,
@@ -32,14 +32,14 @@ namespace Asteroid_Belt_Assault
                 stars.Add(new Sprite(
                     new Vector2(rand.Next(0, screenWidth),
                         rand.Next(0, screenHeight)),
-                    texture,
-                    frameRectangle,
-                    starVelocity));
+                        texture,
+                        frameRectangle,
+                        starVelocity));
                 Color starColor = colors[rand.Next(0, colors.Count())];
-                starColor *= (float)(rand.Next(30, 80) / 100f); stars[stars.Count() - 1].TintColor = starColor;
+                starColor *= (float)(rand.Next(30, 80) / 100f);
+        stars[stars.Count() - 1].TintColor = starColor;
             }
         }
-
         public void Update(GameTime gameTime)
         {
             foreach (Sprite star in stars)
@@ -52,7 +52,6 @@ namespace Asteroid_Belt_Assault
                 }
             }
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Sprite star in stars)
@@ -60,6 +59,10 @@ namespace Asteroid_Belt_Assault
                 star.Draw(spriteBatch);
             }
         }
+        
+
+
 
     }
+
 }

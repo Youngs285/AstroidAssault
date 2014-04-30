@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroid_Belt_Assault
+namespace AstroidAssault
 {
     class AsteroidManager
     {
@@ -53,7 +53,7 @@ namespace Asteroid_Belt_Assault
             int asteroidCount,
             Texture2D texture,
             Rectangle initialFrame,
-            int asteroidFrames,    
+            int asteroidFrames,
             int screenWidth,
             int screenHeight)
         {
@@ -93,7 +93,6 @@ namespace Asteroid_Belt_Assault
                         location.X = rand.Next(0, screenWidth);
                         location.Y = -initialFrame.Height;
                         break;
-
                 }
                 foreach (Sprite asteroid in Asteroids)
                 {
@@ -132,10 +131,10 @@ namespace Asteroid_Belt_Assault
         {
             if (asteroid.Destination.Intersects(
                 new Rectangle(
-                    -screenPadding,
-                    -screenPadding,
-                    screenWidth + screenPadding,
-                    screenHeight + screenPadding)
+                -screenPadding,
+                -screenPadding,
+                screenWidth + screenPadding,
+                screenHeight + screenPadding)
                     )
                 )
             {
@@ -144,6 +143,40 @@ namespace Asteroid_Belt_Assault
             else
             {
                 return false;
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            foreach (Sprite asteroid in Asteroids)
+            {
+                asteroid.Update(gameTime);
+                if (!isOnScreen(asteroid))
+                {
+                    asteroid.Location = randomLocation();
+                    asteroid.Velocity = randomVelocity();
+                }
+            }
+
+            for (int x = 0; x < Asteroids.Count; x++)
+            {
+                for (int y = x + 1; y < Asteroids.Count; x++)
+                {
+                    if (Asteroids[x].IsCircleColliding(
+                        Asteroids[y].Center,
+                           Asteroids[y].CollisionRadius))
+                    {
+                        BounceAsteroids(Asteroids[x], Asteroids[y]);
+                    }
+                }
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (Sprite asteroid in Asteroids)
+            {
+                asteroid.Draw(spriteBatch);
             }
         }
 
@@ -170,41 +203,6 @@ namespace Asteroid_Belt_Assault
                 asteroid2.Velocity += cOfMass;
             }
         }
-
-        public void Update(GameTime gameTime)
-        {
-            foreach (Sprite asteroid in Asteroids)
-            {
-                asteroid.Update(gameTime);
-                if (!isOnScreen(asteroid))
-                {
-                    asteroid.Location = randomLocation();
-                    asteroid.Velocity = randomVelocity();
-                }
-            }
-
-            for (int x = 0; x < Asteroids.Count; x++)
-            {
-                for (int y = x + 1; y < Asteroids.Count; y++)
-                {
-                    if (Asteroids[x].IsCircleColliding(
-                        Asteroids[y].Center, Asteroids[y].CollisionRadius))
-                    {
-                        BounceAsteroids(Asteroids[x], Asteroids[y]);
-                    }
-                }
-            }
-        }
-
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (Sprite asteroid in Asteroids)
-            {
-                asteroid.Draw(spriteBatch);
-            }
-        }
-
 
     }
 }
