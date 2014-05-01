@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroid_Belt_Assault
 {
-    class AsteroidManager
+    class UpgradeAsteroidManager
     {
         private int screenWidth = 800;
         private int screenHeight = 600;
@@ -17,13 +17,13 @@ namespace Asteroid_Belt_Assault
         private int UpgradeAsteroidFrames;
         private Texture2D texture;
 
-        public List<Sprite> Asteroids = new List<Sprite>();
+        public List<Sprite> UpgradeAsteroids = new List<Sprite>();
         private int minSpeed = 60;
         private int maxSpeed = 120;
 
         private Random rand = new Random();
 
-        public void AddAsteroid()
+        public void AddUpgradeAsteroid()
         {
             Sprite newUpgradeAsteroid = new Sprite(
                 new Vector2(-500, -500),
@@ -41,30 +41,30 @@ namespace Asteroid_Belt_Assault
             newUpgradeAsteroid.Rotation =
                 MathHelper.ToRadians((float)rand.Next(0, 360));
             newUpgradeAsteroid.CollisionRadius = 15;
-            Asteroids.Add(newUpgradeAsteroid);
+            UpgradeAsteroids.Add(newUpgradeAsteroid);
         }
 
         public void Clear()
         {
-            Asteroids.Clear();
+            UpgradeAsteroids.Clear();
         }
 
-        public AsteroidManager(
-            int asteroidCount,
+        public UpgradeAsteroidManager(
+            int UpgradeasteroidCount,
             Texture2D texture,
             Rectangle initialFrame,
-            int asteroidFrames,
+            int UpgradeasteroidFrames,
             int screenWidth,
             int screenHeight)
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
-            this.UpgradeAsteroidFrames = asteroidFrames;
+            this.UpgradeAsteroidFrames = UpgradeasteroidFrames;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
-            for (int x = 0; x < asteroidCount; x++)
+            for (int x = 0; x < UpgradeasteroidCount; x++)
             {
-                AddAsteroid();
+                AddUpgradeAsteroid();
             }
         }
 
@@ -95,9 +95,9 @@ namespace Asteroid_Belt_Assault
                         break;
 
                 }
-                foreach (Sprite asteroid in Asteroids)
+                foreach (Sprite Upgradeasteroid in UpgradeAsteroids)
                 {
-                    if (asteroid.IsBoxColliding(
+                    if (Upgradeasteroid.IsBoxColliding(
                         new Rectangle(
                             (int)location.X,
                             (int)location.Y,
@@ -128,9 +128,9 @@ namespace Asteroid_Belt_Assault
             return velocity;
         }
 
-        private bool isOnScreen(Sprite asteroid)
+        private bool isOnScreen(Sprite Upgradeasteroid)
         {
-            if (asteroid.Destination.Intersects(
+            if (Upgradeasteroid.Destination.Intersects(
                 new Rectangle(
                     -screenPadding,
                     -screenPadding,
@@ -147,50 +147,50 @@ namespace Asteroid_Belt_Assault
             }
         }
 
-        private void BounceAsteroids(Sprite asteroid1, Sprite asteroid2)
+        private void UpgradeBounceAsteroids(Sprite Upgradeasteroid1, Sprite Upgradeasteroid2)
         {
             {
-                Vector2 cOfMass = (asteroid1.Velocity +
-                    asteroid2.Velocity) / 2;
+                Vector2 cOfMass = (Upgradeasteroid1.Velocity +
+                    Upgradeasteroid2.Velocity) / 2;
 
-                Vector2 normal1 = asteroid2.Center - asteroid1.Center;
+                Vector2 normal1 = Upgradeasteroid2.Center - Upgradeasteroid1.Center;
                 normal1.Normalize();
-                Vector2 normal2 = asteroid1.Center - asteroid2.Center;
+                Vector2 normal2 = Upgradeasteroid1.Center - Upgradeasteroid2.Center;
                 normal2.Normalize();
 
-                asteroid1.Velocity -= cOfMass;
-                asteroid1.Velocity =
-                    Vector2.Reflect(asteroid1.Velocity, normal1);
-                asteroid1.Velocity += cOfMass;
+                Upgradeasteroid1.Velocity -= cOfMass;
+                Upgradeasteroid1.Velocity =
+                    Vector2.Reflect(Upgradeasteroid1.Velocity, normal1);
+                Upgradeasteroid1.Velocity += cOfMass;
 
-                asteroid2.Velocity -= cOfMass;
-                asteroid2.Velocity =
-                    Vector2.Reflect(asteroid2.Velocity, normal2);
+                Upgradeasteroid2.Velocity -= cOfMass;
+                Upgradeasteroid2.Velocity =
+                    Vector2.Reflect(Upgradeasteroid2.Velocity, normal2);
 
-                asteroid2.Velocity += cOfMass;
+                Upgradeasteroid2.Velocity += cOfMass;
             }
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (Sprite asteroid in Asteroids)
+            foreach (Sprite Upgradeasteroid in UpgradeAsteroids)
             {
-                asteroid.Update(gameTime);
-                if (!isOnScreen(asteroid))
+                Upgradeasteroid.Update(gameTime);
+                if (!isOnScreen(Upgradeasteroid))
                 {
-                    asteroid.Location = randomLocation();
-                    asteroid.Velocity = randomVelocity();
+                    Upgradeasteroid.Location = randomLocation();
+                    Upgradeasteroid.Velocity = randomVelocity();
                 }
             }
 
-            for (int x = 0; x < Asteroids.Count; x++)
+            for (int x = 0; x < UpgradeAsteroids.Count; x++)
             {
-                for (int y = x + 1; y < Asteroids.Count; y++)
+                for (int y = x + 1; y < UpgradeAsteroids.Count; y++)
                 {
-                    if (Asteroids[x].IsCircleColliding(
-                        Asteroids[y].Center, Asteroids[y].CollisionRadius))
+                    if (UpgradeAsteroids[x].IsCircleColliding(
+                        UpgradeAsteroids[y].Center, UpgradeAsteroids[y].CollisionRadius))
                     {
-                        BounceAsteroids(Asteroids[x], Asteroids[y]);
+                        UpgradeBounceAsteroids(UpgradeAsteroids[x], UpgradeAsteroids[y]);
                     }
                 }
             }
@@ -199,9 +199,9 @@ namespace Asteroid_Belt_Assault
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Sprite asteroid in Asteroids)
+            foreach (Sprite Upgradeasteroid in UpgradeAsteroids)
             {
-                asteroid.Draw(spriteBatch);
+                Upgradeasteroid.Draw(spriteBatch);
             }
         }
 

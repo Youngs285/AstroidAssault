@@ -14,7 +14,7 @@ namespace Asteroid_Belt_Assault
         private int screenPadding = 10;
 
         private Rectangle initialFrame;
-        private int asteroidFrames;
+        private int UpgradeAsteroidFrames;
         private Texture2D texture;
 
         public List<Sprite> Asteroids = new List<Sprite>();

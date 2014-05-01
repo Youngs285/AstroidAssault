@@ -56,7 +56,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fonts\" />
+    <None Include="Textures\UpgradeAsteroidSheet.txt">
+      <Name>UpgradeAsteroidSheet</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\UpgradeAsteroidSheet.png">
+      <Name>UpgradeAsteroidSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fonts\Pericles14.spritefont">
+      <Name>Pericles14</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
