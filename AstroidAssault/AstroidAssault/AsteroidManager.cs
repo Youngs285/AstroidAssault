@@ -25,8 +25,13 @@ namespace Asteroid_Belt_Assault
 
         public void AddAsteroid()
         {
+            AddAsteroid(new Vector2(-500, -500));
+        }
+
+        public void AddAsteroid(Vector2 location)
+        {
             Sprite newAsteroid = new Sprite(
-                new Vector2(-500, -500),
+                location,
                 texture,
                 initialFrame,
                 Vector2.Zero);

@@ -96,10 +96,10 @@ namespace Asteroid_Belt_Assault
                 this.Window.ClientBounds.Height);
 
             UpgradeasteroidManager = new UpgradeAsteroidManager(
-                10,
+                1,
                 UpgradeSheet,
-                new Rectangle(0, 0, 1100, 96),
-                20, 
+                new Rectangle(0, 0, 100, 90),
+                10, 
                 this.Window.ClientBounds.Width,
                 this.Window.ClientBounds.Height);
 
@@ -132,6 +132,7 @@ namespace Asteroid_Belt_Assault
 
             collisionManager = new CollisionManager(
                 asteroidManager,
+                UpgradeasteroidManager,
                 playerManager,
                 enemyManager,
                 explosionManager);

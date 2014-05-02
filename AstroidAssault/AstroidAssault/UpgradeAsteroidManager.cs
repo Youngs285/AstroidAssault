@@ -57,6 +57,7 @@ namespace Asteroid_Belt_Assault
             int screenWidth,
             int screenHeight)
         {
+          
             this.texture = texture;
             this.initialFrame = initialFrame;
             this.UpgradeAsteroidFrames = UpgradeasteroidFrames;
@@ -121,7 +122,7 @@ namespace Asteroid_Belt_Assault
         private Vector2 randomVelocity()
         {
             Vector2 velocity = new Vector2(
-                rand.Next(0, 101) - 50,
+                rand.Next(0, 101 ) - 50,
                 rand.Next(0, 101) - 50);
             velocity.Normalize();
             velocity *= rand.Next(minSpeed, maxSpeed);
