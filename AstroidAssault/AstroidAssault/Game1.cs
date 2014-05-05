@@ -50,6 +50,8 @@ namespace Asteroid_Belt_Assault
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            this.IsMouseVisible = true;
+
             Content.RootDirectory = "Content";
         }
 

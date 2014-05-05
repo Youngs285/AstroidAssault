@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Asteroid_Belt_Assault
 {
@@ -172,8 +173,38 @@ namespace Asteroid_Belt_Assault
             }
         }
 
+        public void DoGravityBomb(Vector2 location)
+        {
+            foreach (Sprite asteroid in asteroidManager.Asteroids)
+            {
+                float dist = Vector2.Distance(location, asteroid.Center);
+
+                Vector2 dir = location - asteroid.Center;
+                dir.Normalize();
+
+                dir *= Math.Min(600, 5000 * (1 / (dist/4)));
+
+                asteroid.ImpulseVelocity = dir;
+            }
+
+            foreach (Enemy enemy in enemyManager.Enemies)
+            {
+                float dist = Vector2.Distance(location, EnemySprite.Center);
+
+                Vector2 dir = location - asteroid.Center;
+                dir.Normalize();
+
+                dir *= Math.Min(600, 5000 * (1 / (dist / 4)));
+
+                asteroid.ImpulseVelocity = dir;
+            }
+        }
+
         public void CheckCollisions()
         {
+            MouseState ms = Mouse.GetState();
+            DoGravityBomb(new Vector2((float)ms.X, (float)ms.Y));
+
             checkShotToEnemyCollisions();
             checkShotToAsteroidCollisions();
             if (!playerManager.Destroyed)

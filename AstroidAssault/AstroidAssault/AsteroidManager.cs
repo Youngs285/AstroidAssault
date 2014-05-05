@@ -47,6 +47,7 @@ namespace Asteroid_Belt_Assault
                 MathHelper.ToRadians((float)rand.Next(0, 360));
             newAsteroid.CollisionRadius = 15;
             Asteroids.Add(newAsteroid);
+
         }
 
         public void Clear()
@@ -186,6 +187,8 @@ namespace Asteroid_Belt_Assault
                     asteroid.Location = randomLocation();
                     asteroid.Velocity = randomVelocity();
                 }
+
+
             }
 
             for (int x = 0; x < Asteroids.Count; x++)
