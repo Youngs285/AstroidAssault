@@ -187,16 +187,16 @@ namespace Asteroid_Belt_Assault
                 asteroid.ImpulseVelocity = dir;
             }
 
-            foreach (Enemy enemy in enemyManager.Enemies)
+            foreach (Sprite Enemy in Enemy.Enemies)
             {
-                float dist = Vector2.Distance(location, EnemySprite.Center);
+                float dist = Vector2.Distance(location, Enemy.Center);
 
-                Vector2 dir = location - asteroid.Center;
+                Vector2 dir = location - Enemy.Center;
                 dir.Normalize();
 
                 dir *= Math.Min(600, 5000 * (1 / (dist / 4)));
 
-                asteroid.ImpulseVelocity = dir;
+                Enemy.ImpulseVelocity = dir;
             }
         }
 
