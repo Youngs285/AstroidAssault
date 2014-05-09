@@ -191,5 +191,7 @@ namespace Asteroid_Belt_Assault
             }
         }
 
+
+        public IEnumerable<Sprite> enemy { get; set; }
     }
 }
