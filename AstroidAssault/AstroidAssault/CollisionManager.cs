@@ -13,6 +13,7 @@ namespace Asteroid_Belt_Assault
         private UpgradeAsteroidManager upgradeAsteroidManager;
         private PlayerManager playerManager;
         private EnemyManager enemyManager;
+        private Enemy enemy;
         private ExplosionManager explosionManager;
         private Vector2 offScreen = new Vector2(-500, -500);
         private Vector2 shotToAsteroidImpact = new Vector2(0, -20);
@@ -25,6 +26,7 @@ namespace Asteroid_Belt_Assault
             UpgradeAsteroidManager upgradeAsteroidManager,
             PlayerManager playerManager,
             EnemyManager enemyManager,
+            Enemy enemy,
             ExplosionManager explosionManager)
         {
             this.upgradeAsteroidManager = upgradeAsteroidManager;
@@ -187,16 +189,16 @@ namespace Asteroid_Belt_Assault
                 asteroid.ImpulseVelocity = dir;
             }
 
-            foreach (Sprite enemy in enemyManager.enemy)
+            foreach (Sprite Enemy in enemyManager.Enemies)
             {
-                float dist = Vector2.Distance(location, enemy.Center);
-
-                Vector2 dir = location - enemy.Center;
+                float dist = Vector2.Distance(location, Enemy.Center);
+                
+                Vector2 dir = location - Enemy.Center;
                 dir.Normalize();
 
                 dir *= Math.Min(600, 5000 * (1 / (dist / 4)));
 
-                enemy.ImpulseVelocity = dir;
+                Enemy.ImpulseVelocity = dir;
             }
         }
 
