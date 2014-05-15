@@ -61,12 +61,10 @@ namespace Asteroid_Belt_Assault
             if (playerFired)
             {
 
-                SoundManager.PlayPlayerShot();
             }
             else
             {
 
-                SoundManager.PlayEnemyShot();
             }
         }
 

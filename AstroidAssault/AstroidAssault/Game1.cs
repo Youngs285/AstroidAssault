@@ -125,8 +125,6 @@ namespace Asteroid_Belt_Assault
                 enemyManager,
                 explosionManager);
 
-            SoundManager.Initialize(Content);
-
             pericles14 = Content.Load<SpriteFont>(@"Fonts\Pericles14");
 
 
