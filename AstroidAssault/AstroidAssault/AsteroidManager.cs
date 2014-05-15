@@ -14,7 +14,7 @@ namespace Asteroid_Belt_Assault
         private int screenPadding = 10;
 
         private Rectangle initialFrame;
-        private int UpgradeAsteroidFrames;
+        private int asteroidFrames;
         private Texture2D texture;
 
         public List<Sprite> Asteroids = new List<Sprite>();
@@ -25,17 +25,12 @@ namespace Asteroid_Belt_Assault
 
         public void AddAsteroid()
         {
-            AddAsteroid(new Vector2(-500, -500));
-        }
-
-        public void AddAsteroid(Vector2 location)
-        {
             Sprite newAsteroid = new Sprite(
-                location,
+                new Vector2(-500, -500),
                 texture,
                 initialFrame,
                 Vector2.Zero);
-            for (int x = 1; x < UpgradeAsteroidFrames; x++)
+            for (int x = 1; x < asteroidFrames; x++)
             {
                 newAsteroid.AddFrame(new Rectangle(
                     initialFrame.X + (initialFrame.Width * x),
@@ -47,7 +42,6 @@ namespace Asteroid_Belt_Assault
                 MathHelper.ToRadians((float)rand.Next(0, 360));
             newAsteroid.CollisionRadius = 15;
             Asteroids.Add(newAsteroid);
-
         }
 
         public void Clear()
@@ -65,7 +59,7 @@ namespace Asteroid_Belt_Assault
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
-            this.UpgradeAsteroidFrames = asteroidFrames;
+            this.asteroidFrames = asteroidFrames;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             for (int x = 0; x < asteroidCount; x++)
@@ -187,8 +181,6 @@ namespace Asteroid_Belt_Assault
                     asteroid.Location = randomLocation();
                     asteroid.Velocity = randomVelocity();
                 }
-
-
             }
 
             for (int x = 0; x < Asteroids.Count; x++)

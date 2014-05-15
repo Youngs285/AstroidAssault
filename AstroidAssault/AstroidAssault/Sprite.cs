@@ -41,7 +41,6 @@ namespace Asteroid_Belt_Assault
             frames.Add(initialFrame);
             frameWidth = initialFrame.Width;
             frameHeight = initialFrame.Height;
-            this.ImpulseVelocity = Vector2.Zero;
         }
 
         public Vector2 Location
@@ -49,8 +48,6 @@ namespace Asteroid_Belt_Assault
             get { return location; }
             set { location = value; }
         }
-
-        public Vector2 ImpulseVelocity { get; set; }
 
         public Vector2 Velocity
         {
@@ -155,7 +152,7 @@ namespace Asteroid_Belt_Assault
                 timeForCurrentFrame = 0.0f;
             }
 
-            location += ((velocity + ImpulseVelocity) * elapsed);
+            location += (velocity * elapsed);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
